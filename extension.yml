@@ -1,0 +1,42 @@
+schema_version: "1.0"
+
+extension:
+  id: bug-debug
+  name: "Bug Report & Debug"
+  version: "1.0.0"
+  description: "Document bugs, trace root causes, and generate fix plans with regression prevention"
+  author: "David Klie"
+  repository: "https://github.com/mangoklie/speckit-bug-report-and-debug"
+  license: "MIT"
+
+requires:
+  speckit_version: ">=0.4.0"
+
+provides:
+  commands:
+    - name: speckit.bug-debug.report
+      file: commands/speckit.bug-debug.report.md
+      description: "Intake and document a bug with optional spec artifact tracing"
+    - name: speckit.bug-debug.investigate
+      file: commands/speckit.bug-debug.investigate.md
+      description: "Systematic root cause investigation — read-only, updates bug report"
+    - name: speckit.bug-debug.plan
+      file: commands/speckit.bug-debug.plan.md
+      description: "Generate speckit fix plan and tasks from an investigated bug"
+    - name: speckit.bug-debug.iterate
+      file: commands/speckit.bug-debug.iterate.md
+      description: "Orchestrate full bug lifecycle: report → investigate → plan"
+
+hooks:
+  after_implement:
+    command: speckit.bug-debug.investigate
+    optional: true
+    prompt: "Bug was recently fixed — run pattern sweep to verify no similar occurrences remain?"
+    description: "Post-fix pattern sweep to confirm full remediation"
+
+tags:
+  - "bugs"
+  - "debugging"
+  - "root-cause"
+  - "workflow"
+  - "regression-prevention"

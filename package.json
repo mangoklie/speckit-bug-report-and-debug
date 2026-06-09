@@ -1,0 +1,31 @@
+{
+  "name": "speckit-bug-report-and-debug",
+  "version": "1.0.0",
+  "description": "Spec Kit extension for structured bug iteration: document, investigate, plan, and prevent.",
+  "keywords": [
+    "speckit",
+    "bugs",
+    "debugging",
+    "root-cause",
+    "regression-prevention"
+  ],
+  "author": "David Klie",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mangoklie/speckit-bug-report-and-debug.git"
+  },
+  "scripts": {
+    "prepare": "husky",
+    "release": "release-it",
+    "release:dry": "release-it --dry-run"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.0.2",
+    "@commitlint/config-conventional": "^21.0.2",
+    "@release-it/conventional-changelog": "^11.0.1",
+    "husky": "^9.1.7",
+    "release-it": "^20.2.0"
+  }
+}
