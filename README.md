@@ -72,7 +72,7 @@ speckit.bug-debug.plan BUG-007 --all-occurrences --update-spec
 
 `--all-occurrences` generates tasks for every location found in the pattern sweep. `--update-spec` adds tasks to patch spec artifacts where the bug reveals a gap.
 
-Fix plans are written to `docs/bugs/BUG-NNN-fix-plan.md`. Tasks are also appended to `specs/{feature}/tasks.md` if a linked feature spec exists.
+Outputs `bugs/BUG-NNN-plan.md` (constitution-aware fix design) and `bugs/BUG-NNN-tasks.md` (dependency-ordered checklist).
 
 ### Full lifecycle in one session
 
@@ -87,12 +87,13 @@ Human checkpoints appear between each phase. You control when to proceed.
 ## Output Files
 
 ```
-docs/
-  bugs/
-    BUG-001-2026-06-09-login-token-expiry.md          # bug report
-    BUG-001-fix-plan.md                                # fix plan + tasks
-    BUG-002-2026-06-10-cart-discount-wrong.md
-    BUG-002-fix-plan.md
+bugs/
+  BUG-001-2026-06-09-login-token-expiry.md   # bug report
+  BUG-001-plan.md                             # fix plan (speckit plan format)
+  BUG-001-tasks.md                            # implementation tasks (checklist)
+  BUG-002-2026-06-10-cart-discount-wrong.md
+  BUG-002-plan.md
+  BUG-002-tasks.md
 ```
 
 Bug reports follow this structure:
@@ -103,6 +104,9 @@ Bug reports follow this structure:
 - Spec traceability matrix (links to spec artifacts where relevant)
 - Investigation findings (populated by `investigate`)
 - Fix plan reference (populated by `plan`)
+
+Plan files follow the speckit plan format (constitution + bug context → technical design decisions).
+Task files follow the speckit tasks format (dependency-ordered checklist: fix track + prevention track).
 
 ## Hook
 

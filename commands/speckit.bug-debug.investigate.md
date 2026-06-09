@@ -14,7 +14,7 @@ Systematically investigate a bug's root cause. This command is read-only — it 
 
 Parse the user's input for:
 
-- **Bug reference** (required): `BUG-NNN`, partial file name, or symptom description. Resolve to a file in `docs/bugs/`.
+- **Bug reference** (required): `BUG-NNN`, partial file name, or symptom description. Resolve to a file in `bugs/`.
 - `--deep` — spawn parallel sub-agents to analyze codebase sections concurrently
 - `--fresh` — discard any prior investigation notes in the bug report and start from scratch
 
@@ -22,7 +22,7 @@ Parse the user's input for:
 
 ## Pre-flight
 
-1. Locate the bug report file in `docs/bugs/`. If the reference is ambiguous, list candidates and ask the user to confirm.
+1. Locate the bug report file in `bugs/`. If the reference is ambiguous, list candidates and ask the user to confirm.
 2. Read the full bug report: summary, observed behavior, expected behavior, reproduction steps, environment.
 3. If `--fresh` is set, clear the `## Investigation` section before proceeding.
 4. If investigation notes already exist (and `--fresh` is not set), read them and continue from where analysis left off rather than restarting.
@@ -156,7 +156,7 @@ Use this structure within the `## Investigation` section:
 Output a human-readable investigation summary:
 
 ```
-Investigation complete: docs/bugs/BUG-NNN-...md
+Investigation complete: bugs/BUG-NNN-...md
 Root cause: <one sentence>
 Location: file:line
 Pattern sweep: N occurrence(s) found

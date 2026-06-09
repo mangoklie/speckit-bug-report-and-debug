@@ -2,7 +2,7 @@
 
 Document a bug. This command performs intake and structured documentation only.
 
-**Hard boundary**: Do NOT read source code, trace execution, investigate root causes, write fixes, or modify any file outside `docs/bugs/`. Those activities belong to `speckit.bug-debug.investigate` and `speckit.bug-debug.plan`.
+**Hard boundary**: Do NOT read source code, trace execution, investigate root causes, write fixes, or modify any file outside `bugs/`. Those activities belong to `speckit.bug-debug.investigate` and `speckit.bug-debug.plan`.
 
 ---
 
@@ -37,7 +37,7 @@ Ask only what is missing. Do not ask for items that can be inferred from the des
 
 ### Step 3 — Duplicate Check
 
-Search `docs/bugs/` for existing reports that describe the same symptom. Read file names and summaries only — do not deeply investigate code. If a likely duplicate exists, surface it and ask the user to confirm before proceeding.
+Search `bugs/` for existing reports that describe the same symptom. Read file names and summaries only — do not deeply investigate code. If a likely duplicate exists, surface it and ask the user to confirm before proceeding.
 
 ### Step 4 — Assess Severity
 
@@ -65,15 +65,15 @@ If no relevant spec is found, record "No linked spec — bug may predate feature
 
 ### Step 6 — Determine Bug ID and File Path
 
-Count existing files in `docs/bugs/` that match `BUG-*.md` to determine the next sequential number. Format: `BUG-001`, `BUG-002`, etc. (zero-padded to 3 digits; extend to 4 when count exceeds 999).
+Count existing files in `bugs/` that match `BUG-*.md` to determine the next sequential number. Format: `BUG-001`, `BUG-002`, etc. (zero-padded to 3 digits; extend to 4 when count exceeds 999).
 
 Derive a slug from the bug description: lowercase, hyphens only, max 6 words.
 
-File path: `docs/bugs/BUG-NNN-YYYY-MM-DD-slug.md`
+File path: `bugs/BUG-NNN-YYYY-MM-DD-slug.md`
 
-Example: `docs/bugs/BUG-007-2026-06-09-login-token-not-refreshed.md`
+Example: `bugs/BUG-007-2026-06-09-login-token-not-refreshed.md`
 
-Create `docs/bugs/` if it does not exist.
+Create `bugs/` if it does not exist.
 
 ### Step 7 — Write Bug Report
 
@@ -140,7 +140,7 @@ Create the bug report file using the template below. Fill every section. Leave `
 Output a confirmation message:
 
 ```
-Bug report created: docs/bugs/BUG-NNN-YYYY-MM-DD-slug.md
+Bug report created: bugs/BUG-NNN-YYYY-MM-DD-slug.md
 Severity: <level>
 <Ticket: ref> (if provided)
 
@@ -155,6 +155,6 @@ Next steps:
 
 - Do NOT read source code files to understand the bug
 - Do NOT suggest fixes or workarounds in the report
-- Do NOT create files outside `docs/bugs/`
+- Do NOT create files outside `bugs/`
 - Do NOT modify existing bug reports
 - Surface a duplicate warning if one is found; do not silently skip creation

@@ -33,7 +33,7 @@ After the bug report is created, pause and display:
 
 ```
 --- Checkpoint 1/2: Bug Documented ---
-Report: docs/bugs/BUG-NNN-YYYY-MM-DD-slug.md
+Report: bugs/BUG-NNN-YYYY-MM-DD-slug.md
 Severity: <level>
 
 Review the report above. Proceed to root cause investigation?
@@ -80,13 +80,12 @@ After the plan is created, display:
 
 ```
 --- Lifecycle Complete ---
-Bug:      docs/bugs/BUG-NNN-YYYY-MM-DD-slug.md
-Plan:     docs/bugs/BUG-NNN-fix-plan.md
-Tasks:    N fix + N prevention
-<Tasks also in: specs/{feature}/tasks.md>  (if applicable)
+Bug:      bugs/BUG-NNN-YYYY-MM-DD-slug.md
+Plan:     bugs/BUG-NNN-plan.md
+Tasks:    bugs/BUG-NNN-tasks.md  (N fix + N prevention)
 
 Start implementing:
-  speckit implement BUG-NNN-F1
+  speckit implement BUG-NNN-T1
 ```
 
 ---
@@ -102,7 +101,7 @@ Bug BUG-NNN already investigated. Skipping to plan generation.
 If the bug report already has both investigation notes and a fix plan, inform the user and stop:
 
 ```
-BUG-NNN already has a complete fix plan: docs/bugs/BUG-NNN-fix-plan.md
+BUG-NNN already has a complete fix plan: bugs/BUG-NNN-plan.md
 Nothing to do. Use speckit implement to begin the fix.
 ```
 
