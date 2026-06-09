@@ -8,15 +8,16 @@ A [Spec Kit](https://github.com/github/spec-kit) extension for structured bug it
 |---|---|
 | `speckit.bug-debug.report` | Intake and document a bug with spec tracing |
 | `speckit.bug-debug.investigate` | Systematic root cause investigation (read-only) |
-| `speckit.bug-debug.plan` | Generate fix plan + regression prevention tasks |
+| `speckit.bug-debug.plan` | Generate fix plan (`bugs/BUG-NNN-plan.md`) |
+| `speckit.bug-debug.tasks` | Generate dependency-ordered tasks (`bugs/BUG-NNN-tasks.md`) |
 | `speckit.bug-debug.iterate` | Full lifecycle in one session with checkpoints |
 
 ## Workflow
 
 ```
-report → investigate → plan → implement
-   ↑___________________________________|
-              (iterate orchestrates this)
+report → investigate → plan → tasks → implement
+   ↑____________________________________________|
+                  (iterate orchestrates this)
 ```
 
 Each command has a hard boundary. `report` never reads code. `investigate` never writes code. `plan` never implements. This separation keeps each phase focused and reviewable.
@@ -67,12 +68,20 @@ speckit.bug-debug.investigate BUG-007 --deep
 
 ```
 speckit.bug-debug.plan BUG-007
-speckit.bug-debug.plan BUG-007 --all-occurrences --update-spec
 ```
 
-`--all-occurrences` generates tasks for every location found in the pattern sweep. `--update-spec` adds tasks to patch spec artifacts where the bug reveals a gap.
+Requires investigation complete. Outputs `bugs/BUG-NNN-plan.md` — constitution-aware fix design, chosen approach, affected files.
 
-Outputs `bugs/BUG-NNN-plan.md` (constitution-aware fix design) and `bugs/BUG-NNN-tasks.md` (dependency-ordered checklist).
+### Generate implementation tasks
+
+```
+speckit.bug-debug.tasks BUG-007
+speckit.bug-debug.tasks BUG-007 --all-occurrences --update-spec
+```
+
+Requires plan complete. Outputs `bugs/BUG-NNN-tasks.md` — dependency-ordered checklist with fix track and prevention track (regression tests, spec clarifications).
+
+`--all-occurrences` generates tasks for every pattern-sweep location. `--update-spec` adds tasks to patch spec artifacts where the bug reveals a gap.
 
 ### Full lifecycle in one session
 

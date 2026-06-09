@@ -1,5 +1,5 @@
 ---
-description: Create a fix plan and tasks for a bug, stored in bugs/BUG-NNN-plan.md and bugs/BUG-NNN-tasks.md.
+description: Create a fix plan for a bug and store it in bugs/BUG-NNN-plan.md.
 ---
 
 ## User Input
@@ -20,34 +20,25 @@ $ARGUMENTS
 3. **Create `bugs/BUG-NNN-plan.md`** — a focused implementation plan for fixing the bug:
    - Technical context: where in the stack the bug lives, which files are involved, relevant dependencies
    - Design decisions: chosen fix approach (from the suggested approaches in the investigation), and why it was chosen over alternatives
-   - Scope: primary root cause location + any pattern-sweep occurrences to address
+   - Scope: primary root cause location + any pattern-sweep occurrences to address; note whether prevention tasks (regression tests, spec clarifications) are warranted
    - Constitution compliance: note any constitution principles that constrain or shape the fix
    - File structure: which files will change and how
 
-4. **Create `bugs/BUG-NNN-tasks.md`** — dependency-ordered implementation tasks:
-   - Every task uses checklist format: `- [ ] [BUG-NNN-TX] Description with file path`
-   - Two tracks:
-     - **Fix track** — tasks that directly resolve the root cause (and pattern-sweep occurrences if `--all-occurrences` was passed)
-     - **Prevention track** — regression test(s) that would have caught this bug; spec clarification tasks if `--update-spec` was passed or a spec gap was found
-   - Ordered by dependency: foundational fixes before validation, tests after fix is in place
-   - Final task: validate fix against the exact reproduction steps from the investigation
-
-5. **Update `bugs/BUG-NNN-YYYY-MM-DD-slug.md`** — replace the `## Fix Plan` stub with a reference:
+4. **Update `bugs/BUG-NNN-YYYY-MM-DD-slug.md`** — replace the `## Fix Plan` stub with a reference:
 
    ```
    ## Fix Plan
 
-   **Plan**: bugs/BUG-NNN-plan.md
-   **Tasks**: bugs/BUG-NNN-tasks.md
-   **Status**: ready to implement
+   **Plan**:  bugs/BUG-NNN-plan.md
+   **Tasks**: bugs/BUG-NNN-tasks.md  ← run speckit.bug-debug.tasks BUG-NNN to generate
+   **Status**: plan ready, tasks pending
    ```
 
-6. **Emit summary**:
+5. **Emit summary**:
 
    ```
-   Plan created:  bugs/BUG-NNN-plan.md
-   Tasks created: bugs/BUG-NNN-tasks.md  (N tasks: N fix + N prevention)
+   Plan created: bugs/BUG-NNN-plan.md
 
-   Start implementing:
-     speckit implement BUG-NNN-T1
+   Next step:
+     speckit.bug-debug.tasks BUG-NNN   — generate implementation tasks
    ```

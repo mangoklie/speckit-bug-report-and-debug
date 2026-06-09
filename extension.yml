@@ -23,9 +23,12 @@ provides:
     - name: speckit.bug-debug.plan
       file: commands/speckit.bug-debug.plan.md
       description: "Generate speckit fix plan and tasks from an investigated bug"
+    - name: speckit.bug-debug.tasks
+      file: commands/speckit.bug-debug.tasks.md
+      description: "Generate dependency-ordered implementation tasks from an investigated bug and its plan"
     - name: speckit.bug-debug.iterate
       file: commands/speckit.bug-debug.iterate.md
-      description: "Orchestrate full bug lifecycle: report → investigate → plan"
+      description: "Orchestrate full bug lifecycle: report → investigate → plan → tasks"
 
 hooks:
   after_implement:
