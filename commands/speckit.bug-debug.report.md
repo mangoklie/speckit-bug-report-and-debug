@@ -1,3 +1,9 @@
+---
+description: Document a bug. Performs intake and structured documentation only.
+scripts:
+  sh: scripts/bash/setup-bug-report.sh --json
+---
+
 # speckit.bug-debug.report
 
 Document a bug. This command performs intake and structured documentation only.
@@ -63,21 +69,13 @@ For each potentially relevant spec found:
 
 If no relevant spec is found, record "No linked spec — bug may predate feature documentation." in the traceability section.
 
-### Step 6 — Determine Bug ID and File Path
+### Step 6 — Setup
 
-Count existing files in `bugs/` that match `BUG-*.md` to determine the next sequential number. Format: `BUG-001`, `BUG-002`, etc. (zero-padded to 3 digits; extend to 4 when count exceeds 999).
-
-Derive a slug from the bug description: lowercase, hyphens only, max 6 words.
-
-File path: `bugs/BUG-NNN-YYYY-MM-DD-slug.md`
-
-Example: `bugs/BUG-007-2026-06-09-login-token-not-refreshed.md`
-
-Create `bugs/` if it does not exist.
+Derive a 2–4 word slug from the bug description (meaningful keywords, lowercase-hyphen, no stop words). Run `{SCRIPT} --short-name <slug>` from repo root and parse the JSON output for `BUG_ID`, `BUG_FILE`, `BUGS_DIR`, and `BRANCH`. Use these values for all subsequent file references — do not compute paths manually.
 
 ### Step 7 — Write Bug Report
 
-Create the bug report file using the template below. Fill every section. Leave `## Investigation` and `## Fix Plan` as empty stubs — those are populated by later commands.
+Write the full bug report content to `BUG_FILE` using the template below. Fill every section. Leave `## Investigation` and `## Fix Plan` as empty stubs — those are populated by later commands.
 
 ```markdown
 # BUG-NNN: <short title>
@@ -140,13 +138,13 @@ Create the bug report file using the template below. Fill every section. Leave `
 Output a confirmation message:
 
 ```
-Bug report created: bugs/BUG-NNN-YYYY-MM-DD-slug.md
+Bug report created: <BUG_FILE>
 Severity: <level>
 <Ticket: ref> (if provided)
 
 Next steps:
-  speckit.bug-debug.investigate BUG-NNN   — identify root cause
-  speckit.bug-debug.iterate BUG-NNN       — run full lifecycle in one session
+  speckit.bug-debug.investigate <BUG_ID>   — identify root cause
+  speckit.bug-debug.iterate <BUG_ID>       — run full lifecycle in one session
 ```
 
 ---
