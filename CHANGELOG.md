@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.0](https://github.com/mangoklie/speckit-bug-report-and-debug/compare/v1.0.0...v1.1.0) (2026-06-10)
+
+### Features
+
+* add bash scripts for deterministic artifact setup and wire commands ([c2e839b](https://github.com/mangoklie/speckit-bug-report-and-debug/commit/c2e839b11f277f66ef14b5c0539844132baac567))
+
 ## 1.0.0 (2026-06-09)
 
 ### Features
